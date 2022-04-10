@@ -4,27 +4,28 @@ const Record = require('../../models/record')
 const Category = require('../../models/category')
 
 router.get('/', (req,res) => {
-  // const userId = req.user._id
+  const userId = req.user._id
   
-    Record.find({})
-      .lean()
-      .then(records => {
-        let totalAmount = 0
-        records.forEach(item => {
-          totalAmount += item.amount
-        })
-        return res.render('index', {
-          totalAmount, records
-        })
+  Record.find({ userId })
+    .lean()
+    .sort({ _id: 'asc' })
+    .then(records => {
+      let totalAmount = 0
+      records.forEach(item => {
+        totalAmount += item.amount
       })
+      return res.render('index', {
+        totalAmount, records
+      })
+    })
 
 })
 
 router.post('/', (req, res) => {
-  //const userId = req.user._id
+  const userId = req.user._id
   const sort = req.body.sort
   
-  Record.find()
+  Record.find({ userId })
     .populate('categoryId')
     .lean()
     .then(records => {

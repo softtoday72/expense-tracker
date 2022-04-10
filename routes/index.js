@@ -7,6 +7,7 @@ const create = require('./modules/create')
 const users = require('./modules/users')
 const { authenticator } = require('../middleware/auth')
 
+
 router.use('/users', users)
 router.use('/create', authenticator, create)
 router.use('/edit', authenticator, edit)

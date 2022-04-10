@@ -9,6 +9,7 @@ const session = require('express-session')
 const usePassport = require('./config/passport')
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
+const flash = require('connect-flash')
 const routes = require('./routes')
 const port = process.env.PORT
 require('./config/mongoose')
@@ -20,6 +21,20 @@ app.use(session({
 }))
 // 呼叫 Passport 函式並傳入 app，這條要寫在路由之前
 usePassport(app)
+app.use(flash())
+
+//在 usePassport(app) 之後、app.use(routes) 之前，加入一組 middleware
+//把登入時 req 的user資料留在 res裡面
+app.use((req, res, next) => {
+  // 你可以在這裡 console.log(req.user) 等資訊來觀察
+  res.locals.isAuthenticated = req.isAuthenticated()
+  res.locals.user = req.user
+  //設定 connect - flash msg
+  res.locals.success_msg = req.flash('success_msg')  
+  res.locals.warning_msg = req.flash('warning_msg')
+  next()
+})
+
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
 app.use(routes)

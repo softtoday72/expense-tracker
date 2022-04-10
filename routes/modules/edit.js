@@ -5,11 +5,12 @@ const Category = require('../../models/category')
 
 //實際地址是 localhost3000/edit/:id
 router.get('/:id', (req,res) => {
+  const userId = req.user._id
   const _id = req.params.id
   Category.find({})
     .lean()
     .then(catagories => {
-      Record.findOne({_id})
+      Record.findOne({ _id, userId })
         .populate('categoryId')
         .lean()
         .then(record => {
@@ -30,10 +31,11 @@ router.get('/:id', (req,res) => {
 })
 
 router.put('/:id', (req, res) => {
+  const userId = req.user._id
   const _id = req.params.id
   const { name, date, categoryId, amount } = req.body
   
-  Record.findOne({_id})
+  Record.findOne({ _id, userId })
     .populate('categoryId')
     .then(record => {
       record.name = name
@@ -54,8 +56,9 @@ router.put('/:id', (req, res) => {
 
 
 router.delete('/delete/:id', (req, res) => {
+  const userId = req.user._id
   const _id = req.params.id
-  return Record.findOne({_id})
+  return Record.findOne({ _id, userId })
     .then(record => {
       record.remove()
     })

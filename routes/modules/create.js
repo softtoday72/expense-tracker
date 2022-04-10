@@ -3,7 +3,7 @@ const router = express.Router()
 const Record = require('../../models/record')
 const Category = require('../../models/category')
 
-//新增的頁面
+//新增的頁面(空白的)
 router.get('/', (req, res) => {
   Category.find({})
     .lean()
@@ -18,14 +18,15 @@ router.get('/', (req, res) => {
 
 //送出的按鈕
 router.post('/', (req, res) => {
-  // const usreId = req.user._id
+  const userId = req.user._id
   const name = req.body.name
   const date = req.body.date
   const categoryId = req.body.categoryId
   const amount = req.body.amount
   
  
-  return Record.create({name, date, categoryId, amount 
+  return Record.create({
+    name, date, categoryId, amount, userId
     })
     .then(() => res.redirect('/'))
     .catch(error => {
