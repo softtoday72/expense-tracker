@@ -1,0 +1,51 @@
+{
+  "userList": [
+    {
+      "name": "廣志",
+      "email": "user1@example.com",
+      "password": "12345678"
+    },
+    {
+      "name": "小新",
+      "email": "user2@example.com",
+      "password": "12345678"
+    }
+  ],
+  "recordList": [
+    {
+      "name": "午餐",
+      "date": "2019-04-23",
+      "amount": 60,
+      "userId": 1,
+      "categoryId": 4
+    },
+    {
+      "name": "晚餐",
+      "date": "2019-04-23",
+      "amount": 60,
+      "userId": 1,
+      "categoryId": 4
+    },
+    {
+      "name": "捷運",
+      "date": "2019-04-23",
+      "amount": 120,
+      "userId": 1,
+      "categoryId": 2
+    },
+    {
+      "name": "電影:驚奇隊長",
+      "date": "2019-04-23",
+      "amount": 220,
+      "userId": 2,
+      "categoryId": 3
+    },
+    {
+      "name": "租金",
+      "date": "2015-04-01",
+      "amount": 25000,
+      "userId": 1,
+      "categoryId": 1
+    }
+  ]
+}
