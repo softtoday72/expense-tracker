@@ -1,0 +1,60 @@
+<div class="col-4 my-4 mx-auto">
+  <form action="/" method = "post">
+<select class="form-select" name="sort" aria-label="Default select example" onchange="this.form.submit()">
+  <option value="類別">類別</option>
+  <option value="全部">全部</option>
+  <option value="居家物業">居家物業</option>
+  <option value="交通出行">交通出行</option>
+  <option value="休閒娛樂">休閒娛樂</option>
+  <option value="餐飲食品">餐飲食品</option>
+  <option value="其他">其他</option>
+</select>
+</form>
+</div>
+
+<div class="col-4 my-2 mx-auto">
+  <p class="d-flex justify-content-around">
+    <span class="text-secondary text-body align-top" style="font-size:20px;">
+      總金額：
+    </span>
+    <span class="text-secondary text-warning" style="font-size:40px;">
+      {{totalAmount}}
+    </span>
+  </p>
+</div>
+
+<ul class="list-group w-50 m-auto">
+  {{#each records}}
+  <li class="list-group-item">
+    <div class="row">
+      <div class="col-auto my-auto px-1">
+        <i class="{{this.categoryIcon}} fa-2x text-primary"></i>
+      </div>
+      <div class="col-auto mr-auto px-0">
+        <h4 style="display: inline; vertical-align: middle;">
+          {{this.name}}
+        </h4>
+        <p class="mb-1">
+          {{this.date}}
+        </p>
+      </div>
+      <div class="col-auto my-auto">
+        <span style="display: inline; vertical-align: middle; font-size:20px;">
+          {{this.amount}}
+        </span>
+      </div>
+      <div class="col-auto my-auto">
+        <a class="btn btn-success" href="./edit/{{ this._id }}">修改</a>
+        <form action="./edit/delete/{{ this._id }}?_method=DELETE" method="POST" style="display: inline;"
+          onsubmit="return confirm('確定要刪除嗎?')">
+          <button class="btn btn-danger" type="submit">刪除</button>
+        </form>
+      </div>
+    </div>
+  </li>
+  {{/each}}
+</ul>
+
+<div class="col-4 my-5 mx-auto text-center">
+  <a href="/create" class="btn btn-warning text-muted font-weight-bolder btn-lg">新增支出</a>
+</div>

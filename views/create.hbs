@@ -1,0 +1,44 @@
+<div class="container h-100" style="width: 600px;">
+  <form action="/create" method="post" class="h-100 d-flex flex-column justify-content-evenly">
+    <h4 class="align-self-center">請輸入你的支出</h4>
+    {{> message}}
+    <div class="d-flex mb-2" style="position: relative; right: 25px;">
+      <label for="name" class="col-form-label">
+        名稱：
+      </label>
+      <div class="flex-fill">
+        <input type="text" name="name" class="form-control" id="name" placeholder="用這筆消費做了什麼..." value="{{name}}">
+      </div>
+    </div>
+    <div class="d-flex mb-2" style="position: relative; right: 25px;">
+      <label for="date" class="col-form-label">
+        日期：
+      </label>
+      <div class="flex-fill">
+        <input type="date" name="date" class="form-control" id="date" value="{{date}}">
+      </div>
+    </div>
+    <div class="d-flex mb-2" style="position: relative; right: 25px;">
+      <label for="categoryId" class="col-form-label">
+        類別：
+      </label>
+      <div class="flex-fill">
+        <select class="form-select" name="categoryId" id="categoryId">
+          {{#each catagories}}
+          <option value="{{ this._id }}" {{#if this.preset}}selected="selected" {{/if}}>{{ this.name }}</option>
+          {{/each}}
+        </select>
+      </div>
+    </div>
+    <div class="d-flex mb-2" style="position: relative; right: 25px;">
+      <label for="amount" class="col-form-label">
+        金額：
+      </label>
+      <div class="flex-fill">
+        <input type="number" name="amount" class="form-control" id="amount" min="0"
+          value="{{#if amount}}{{amount}}{{else}}0{{/if}}">
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary w-75 text-center align-self-center mt-4">新增支出</button>
+  </form>
+</div>
