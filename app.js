@@ -11,7 +11,7 @@ const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
 const flash = require('connect-flash')
 const routes = require('./routes')
-const port = process.env.PORT
+const port = process.env.PORT || 3000
 require('./config/mongoose')
 //session作為第一個 middleware
 app.use(session({
