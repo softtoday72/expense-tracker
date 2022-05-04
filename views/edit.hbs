@@ -16,7 +16,7 @@
         日期：
       </label>
       <div class="flex-fill">
-        <input type="date" name="date" class="form-control" id="date" value="{{record.date}}">
+        <input type="date" class="form-control" id="date" name="date" value="{{record.date}}">
       </div>
     </div>
     <div class="d-flex mb-2" style="position: relative; right: 25px;">
@@ -25,8 +25,9 @@
       </label>
       <div class="flex-fill">
         <select class="form-select" name="categoryId" id="categoryId">
+          <option value="{{record.categoryId._id}}" selected>{{ record.categoryId.name }}</option>
           {{#each catagories}}
-          <option value="{{ this._id }}" {{#if this.preset}}selected="selected" {{/if}}>{{ this.name }}</option>
+          <option value="{{this._id}}">{{this.name}}</option>
           {{/each}}
         </select>
       </div>

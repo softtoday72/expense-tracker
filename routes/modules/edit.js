@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const Record = require('../../models/record')
 const Category = require('../../models/category')
+const moment = require('moment')
 
 //實際地址是 localhost3000/edit/:id
 router.get('/:id', (req,res) => {
@@ -14,11 +15,13 @@ router.get('/:id', (req,res) => {
         .populate('categoryId')
         .lean()
         .then(record => {
-          const categoryId = record.categoryId.name
-          //moment.utc('2019-11-03T05:00:00.000Z').format('MM/DD/YYYY')
-          //or
-          //moment('2019-11-03T05:00:00.000Z').utc().format('MM/DD/YYYY')
-          return res.render('edit', { catagories, record, categoryId })
+          
+          //record.date = moment.utc(record.date).format('YYYY/MM/DD')
+          
+          // 2020-05-07
+          // 2020/5/07
+        
+          return res.render('edit', { catagories, record })
         })
       
     })
