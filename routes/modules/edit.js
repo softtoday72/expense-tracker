@@ -16,8 +16,8 @@ router.get('/:id', (req,res) => {
         .lean()
         .then(record => {
           
-          //record.date = moment.utc(record.date).format('YYYY/MM/DD')
-          
+          record.date = moment.utc(record.date).format('YYYY-MM-DD')
+          console.log
           // 2020-05-07
           // 2020/5/07
         
